@@ -39,18 +39,29 @@ def maxProfit(prices: List[int]) -> int:
         return max_profit
 
 def longestCommonPrefix(strs: List[str]) -> str:
-    min_length = float('inf')
-    for s in strs:
-        if len(s) < min_length:
-            min_length = len(s)
+    # min_length = float('inf')
+    # for s in strs:
+    #     if len(s) < min_length:
+    #         min_length = len(s)
+    # i = 0
+    # while i < min_length:
+    #     for s in strs:
+    #         if s[i] != strs[0][i]:
+    #             return s[:i]
+    #     i += 1
+
+    # return s[:i]
+    
+    # second attempt
+    shortest_str = min(strs, key=len)
     i = 0
-    while i < min_length:
+    while i < len(shortest_str):
         for s in strs:
-            if s[i] != strs[0][i]:
+            if s[i] != shortest_str[i]:
                 return s[:i]
         i += 1
-
     return s[:i]
+    
 
 def summaryRanges(nums: List[int]) -> List[str]:
     # i, j = 0, 0
@@ -85,13 +96,64 @@ def summaryRanges(nums: List[int]) -> List[str]:
             ans.append(str(start))
         i += 1
     return ans
-              
+
+
+def productExceptSelf(nums: List[int]) -> List[int]:
+    # first attempt
+    # Time: O(n^2)
+    answer = []
+
+    for i in range(len(nums)):
+        total = 1
+        if i != 0:
+            pre = nums[:i]
+            suff = nums[i + 1:]
+            for k in pre:
+                total *= k
+            for l in suff:
+                total *= l
+            answer.append(total)
+        
+        else:
+            for j in nums[i + 1: ]:
+                total *= j
+            answer.append(total)
+    
+    return answer
+
+def merge(intervals: List[List[int]]) -> List[List[int]]:
+    intervals.sort(key=lambda x: x[0])
+    lst = []
+    i = 0
+    while i < len(intervals):
+            if len(lst) == 0:
+                lst.append(intervals[i])
+                i += 1
+            elif intervals[i][0] <= lst[-1][1] and intervals[i][1] >= lst[-1][1]:
+                lst[-1] = [lst[-1][0], intervals[i][1]]
+                i += 1
+            elif intervals[i][0] <= lst[-1][1] and intervals[i][1] <= lst[-1][1]:
+                lst[-1] = [lst[-1][0], lst[-1][1]]
+                i += 1
+            else:
+                lst.append(intervals[i])
+                i += 1
+    return lst
+
+
 
 if __name__ == "__main__":
     prices = [7,1,5,3,6,4]
-    print(maxProfit(prices))
+    #print(maxProfit(prices))
     strs = ["flower","flow","flight"]
-    print(longestCommonPrefix(strs))
+    #print(longestCommonPrefix(strs))
     # nums = [0,1,2,4,5,7]
     nums = [0,2,3,4,6,8,9]
-    print(summaryRanges(nums))
+    #print(summaryRanges(nums))
+    #nums = [1,2,3,4]
+    nums = [-1,1,0,-3,3]
+    print(productExceptSelf(nums))
+    #intervals = [[1,3],[2,6],[8,10],[15,18]]
+    #intervals = [[1,4],[4,5]]
+    intervals = [[1,4],[0,4]]
+    print(merge(intervals))
