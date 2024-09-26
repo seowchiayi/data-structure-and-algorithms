@@ -1,6 +1,6 @@
 # Data Structure & Algorithms Interview Prep
 
-## Website 1: [algomap.io](algomap.io)
+## Website 1: [algomap.io](https://algomap.io)
 
 ### Questions completed: 20/100
 
@@ -18,7 +18,7 @@
 11. Graphs
 12. Dynamic Programming
 
-## Website 2: [interviewcake.com](interviewcake.com)
+## Website 2: [interviewcake.com](https://interviewcake.com)
 
 ### Questions completed: 10/39
 
