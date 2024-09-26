@@ -1,7 +1,7 @@
 from typing import List
-from collections import defaultdict
 
-def merge_ranges(meetings):
+
+def merge_meeting_times(meetings):
     meetings.sort(key=lambda k:k[0])
     merged = []
 
@@ -139,7 +139,7 @@ def merge_lists(my_list, alices_list):
     
     return lst
 
-def first_come_first_served(take_out_orders, dine_in_orders, served_orders):
+def cafe_order_checker(take_out_orders, dine_in_orders, served_orders):
     for order in served_orders:
         if len(take_out_orders) > 0 and order == take_out_orders[0]:
             take_out_orders = take_out_orders[1:]
@@ -150,65 +150,21 @@ def first_come_first_served(take_out_orders, dine_in_orders, served_orders):
         
     return True
 
-def pick_movies(flight_length, movie_lengths):
-    main, secondary = 0, 1
-    times = 0
-    while times < len(movie_lengths):
-        total_length = movie_length[main]
-        for movie_length in movie_lengths[secondary:]:
-            if movie_length + total_length == flight_length:
-                return True
-        main += 1
-        secondary += 1
-        times += 1
-            
-        
-    return False
-
-def permutation_palindrome(s):
-    # solution 1 - with python counter
-    # counter = defaultdict(int)
-    # count = 0
-    # for c in s:
-    #     counter[c] += 1
-    # for key, value in counter.items():
-    #     if value != 2:
-    #         count += 1
-    
-    # if count <= 1:
-    #     return True
-    
-    # solution 2 - with set
-    unpaired_chars = set()
-
-    for c in s:
-        if c not in unpaired_chars:
-            unpaired_chars.add(c)
-        else:
-            unpaired_chars.remove(c)
-
-    return len(unpaired_chars) == 1
-
-
-    
-
-    
-    
 
 if __name__ == "__main__":
     #meetings = [(0, 1), (3, 5), (4, 8), (10, 12), (9, 10)]
     #meetings = [(1, 2), (2, 3)]
     #meetings = [(1, 10), (2, 6), (3, 5), (7, 9)]
-    meetings =  [(1, 3), (2, 4)]
-    print(merge_ranges(meetings))
-    print(reverse_chars_in_string(['h', 'e', 'l', 'l', 'o']))
-    print(reverse_words([ 'c', 'a', 'k', 'e', ' ',
-            'p', 'o', 'u', 'n', 'd', ' ',
-            's', 't', 'e', 'a', 'l' ]))
-    print(my_reverse_words([ 'c', 'a', 'k', 'e', ' ',
-            'p', 'o', 'u', 'n', 'd', ' ',
-            's', 't', 'e', 'a', 'l' ]))
-    print(merge_lists([3, 4, 6, 10, 11, 15], [1, 5, 8, 12, 14, 19]))
-    print(first_come_first_served([1, 3, 5], [2, 4, 6], [1, 2, 4, 6, 5, 3]))
-    print(first_come_first_served([17, 8, 24], [12, 19, 2], [17, 8, 12, 19, 24, 2]))
-    print(permutation_palindrome("civic"))
+    # meetings =  [(1, 3), (2, 4)]
+    # print(merge_meeting_times(meetings))
+    # print(reverse_chars_in_string(['h', 'e', 'l', 'l', 'o']))
+    # print(reverse_words([ 'c', 'a', 'k', 'e', ' ',
+    #         'p', 'o', 'u', 'n', 'd', ' ',
+    #         's', 't', 'e', 'a', 'l' ]))
+    # print(my_reverse_words([ 'c', 'a', 'k', 'e', ' ',
+    #         'p', 'o', 'u', 'n', 'd', ' ',
+    #         's', 't', 'e', 'a', 'l' ]))
+    # print(merge_lists([3, 4, 6, 10, 11, 15], [1, 5, 8, 12, 14, 19]))
+    # print(cafe_order_checker([1, 3, 5], [2, 4, 6], [1, 2, 4, 6, 5, 3]))
+    # print(cafe_order_checker([17, 8, 24], [12, 19, 2], [17, 8, 12, 19, 24, 2]))
+    
