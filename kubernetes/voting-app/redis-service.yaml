@@ -1,0 +1,17 @@
+apiVersion: v1 
+kind: Service
+metadata:
+  name: redis
+  labels:
+    name: redis-service
+    app: demo-voting-app
+spec:
+  # default is ClusterIP and we use ClusterIP because its an internal service
+  ports:
+  - port: 6379
+    targetPort: 6379 # no node port because redis is an internal service
+  selector:
+    name: redis-pod
+    app: demo-voting-app
+    
+      

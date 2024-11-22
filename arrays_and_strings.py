@@ -1,5 +1,6 @@
 from typing import List
 
+
 # recording my attempts so I can see my progress
 def maxProfit(prices: List[int]) -> int:
         # first attempt
@@ -141,6 +142,53 @@ def merge(intervals: List[List[int]]) -> List[List[int]]:
     return lst
 
 
+def find_closest_number_to_zero(nums: List[int]):
+    smallest_dist = float('inf')
+
+    for num in nums:
+        if abs(num) == abs(smallest_dist):
+            if num > smallest_dist:
+                smallest_dist = num
+
+        elif abs(num) < abs(smallest_dist):
+            smallest_dist = num
+        
+    return smallest_dist
+
+
+def merge_strings_alternately(word1, word2):
+    s = ""
+    if len(word1) < len(word2):
+        length = len(word1)
+        remaining = word2[length:]
+    else:
+        length = len(word2)
+        remaining = word1[length:]
+
+    i = 0
+    while i < length:
+        s += word1[i]
+        s += word2[i]
+        i += 1
+    
+    s += remaining
+    return s
+
+def best_time_to_buy_and_sell_stock(prices: List[int]):
+    max_profit = 0
+    min_price = float('inf')
+    for price in prices:
+        if price < min_price:
+            min_price = price
+        profit = price - min_price
+        if profit > max_profit:
+            max_profit = profit
+    
+    return max_profit
+
+
+           
+
 
 if __name__ == "__main__":
     prices = [7,1,5,3,6,4]
@@ -152,8 +200,12 @@ if __name__ == "__main__":
     #print(summaryRanges(nums))
     #nums = [1,2,3,4]
     nums = [-1,1,0,-3,3]
-    print(productExceptSelf(nums))
+    #print(productExceptSelf(nums))
     #intervals = [[1,3],[2,6],[8,10],[15,18]]
     #intervals = [[1,4],[4,5]]
     intervals = [[1,4],[0,4]]
-    print(merge(intervals))
+    #print(merge(intervals))
+    print(find_closest_number_to_zero([2,-1,1]))
+    print(find_closest_number_to_zero([-4,-2,1,4,8]))
+    print(merge_strings_alternately(word1 = "abc", word2 = "pqr"))
+    print(merge_strings_alternately(word1 = "abcd", word2 = "pq"))

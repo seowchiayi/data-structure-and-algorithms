@@ -1,6 +1,4 @@
 from typing import List
-
-
 def merge_meeting_times(meetings):
     meetings.sort(key=lambda k:k[0])
     merged = []
@@ -166,5 +164,5 @@ if __name__ == "__main__":
     #         's', 't', 'e', 'a', 'l' ]))
     # print(merge_lists([3, 4, 6, 10, 11, 15], [1, 5, 8, 12, 14, 19]))
     # print(cafe_order_checker([1, 3, 5], [2, 4, 6], [1, 2, 4, 6, 5, 3]))
-    # print(cafe_order_checker([17, 8, 24], [12, 19, 2], [17, 8, 12, 19, 24, 2]))
+    print(cafe_order_checker([17, 8, 24], [12, 19, 2], [17, 8, 12, 19, 24, 2]))
     
