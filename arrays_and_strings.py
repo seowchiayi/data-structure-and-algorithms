@@ -156,6 +156,8 @@ def find_closest_number_to_zero(nums: List[int]):
     return smallest_dist
 
 
+
+
 def merge_strings_alternately(word1, word2):
     s = ""
     if len(word1) < len(word2):
@@ -187,6 +189,22 @@ def best_time_to_buy_and_sell_stock(prices: List[int]):
     return max_profit
 
 
+def rotate_image(matrix: List[List[int]]) -> None:
+    # step 1: transpose the matrix
+    # change rows to columns
+    n = len(matrix)
+    for i in range(n):
+        for j in range(i+1, n):
+            # i want 0 0 0 1 0 2 to become 0 0 1 0 2 0
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    
+    # step 2: reflection
+    # i want 0 0 1 0 2 0 to become 0 3 1 3 2 3
+    for i in range(n):
+        for j in range(n // 2):
+            matrix[i][j], matrix[i][n - j - 1] = matrix[i][n - j - 1], matrix[i][j]
+    
+    print(matrix)
            
 
 
@@ -205,7 +223,8 @@ if __name__ == "__main__":
     #intervals = [[1,4],[4,5]]
     intervals = [[1,4],[0,4]]
     #print(merge(intervals))
-    print(find_closest_number_to_zero([2,-1,1]))
-    print(find_closest_number_to_zero([-4,-2,1,4,8]))
-    print(merge_strings_alternately(word1 = "abc", word2 = "pqr"))
-    print(merge_strings_alternately(word1 = "abcd", word2 = "pq"))
+    # print(find_closest_number_to_zero([2,-1,1]))
+    # print(find_closest_number_to_zero([-4,-2,1,4,8]))
+    # print(merge_strings_alternately(word1 = "abc", word2 = "pqr"))
+    # print(merge_strings_alternately(word1 = "abcd", word2 = "pq"))
+    print(rotate_image(10))

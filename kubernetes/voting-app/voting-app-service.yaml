@@ -6,11 +6,10 @@ metadata:
     name: voting-service
     app: demo-voting-app
 spec:
-  type: NodePort # default is ClusterIP if no type is set, NodePort is used to expose external facing app
+  type: LoadBalancer # default is ClusterIP if no type is set, NodePort is used to expose external facing app
   ports:
   - port: 80 # frontend ap that runs on port 80 # this is a service port
     targetPort: 80
-    nodePort: 30004
   selector:
     name: voting-app-pod
     app: demo-voting-app
