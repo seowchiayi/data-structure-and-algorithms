@@ -181,7 +181,6 @@ def maximum_swap(num: int):
     while i >= 0:
         cur_num = num_as_arr[i]
         num_as_arr[i] = (cur_num, max_seen, max_seen_at)
-        #print(num_as_arr)
 
         if cur_num > max_seen:
             max_seen = cur_num
