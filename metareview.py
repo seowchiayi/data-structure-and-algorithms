@@ -343,7 +343,7 @@ class Traverse:
 
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # head = SinglyNode(1)
     # a = SinglyNode(3)
     # b = SinglyNode(4)
@@ -357,7 +357,7 @@ if __name__ == "__main__":
     # print(t.display_the_list(head))
     # print(t.search(head, 4))
 
-    head = tail = DoublyNode(1)
+    # head = tail = DoublyNode(1)
     # a = DoublyNode(3)
     # b = DoublyNode(4)
     # c = DoublyNode(7)
@@ -371,16 +371,15 @@ if __name__ == "__main__":
     # c.prev = b
     # c.next = tail
 
-    t = Traverse()
+    # t = Traverse()
+    
+    # new_node, tail = t.insert_at_beginning(head, tail, 3)
+    # print(t.display_the_list(new_node))
     
 
-    new_node, tail = t.insert_at_beginning(head, tail, 3)
-    print(t.display_the_list(new_node))
-    
 
 
-
-#if __name__ == "__main__":
+if __name__ == "__main__":
     # root = TreeNode(10)
     # a = TreeNode(5)
     # b = TreeNode(3)
@@ -449,38 +448,38 @@ if __name__ == "__main__":
     #bfs_recursion(queue)
     # print(binary_tree_vertical_order_traversal(root))
 
-    # root = TreeNode(1)
-    # a = TreeNode(2)
-    # b = TreeNode(3)
-    # c = TreeNode(4)
-    # d = TreeNode(10)
-    # e = TreeNode(9)
-    # f = TreeNode(11)
-    # g = TreeNode(5)
-    # h = TreeNode(6)
+    root = TreeNode(1)
+    a = TreeNode(2)
+    b = TreeNode(3)
+    c = TreeNode(4)
+    d = TreeNode(10)
+    e = TreeNode(9)
+    f = TreeNode(11)
+    g = TreeNode(5)
+    h = TreeNode(6)
 
 
-    # root.left = a
-    # root.right = b
-    # a.left = c
-    # a.right = d
-    # b.left = e
-    # b.right = f
-    # c.right = g
-    # g.right = h
+    root.left = a
+    root.right = b
+    a.left = c
+    a.right = d
+    b.left = e
+    b.right = f
+    c.right = g
+    g.right = h
 
-    # print(binary_tree_vertical_order_traversal(root))
+    print(binary_tree_vertical_order_traversal(root))
 
-    # root = TreeNode(1)
-    # a = TreeNode(2)
-    # b = TreeNode(3)
-    # c = TreeNode(4)
-    # d = TreeNode(5)
+    root = TreeNode(1)
+    a = TreeNode(2)
+    b = TreeNode(3)
+    c = TreeNode(4)
+    d = TreeNode(5)
 
-    # root.left = a
-    # root.right = b
-    # a.left = c
-    # a.right = d
+    root.left = a
+    root.right = b
+    a.left = c
+    a.right = d
 
-    # S = Solution()
-    # print(S.diameter_of_binary_tree(root))
+    S = Solution()
+    print(S.diameter_of_binary_tree(root))
