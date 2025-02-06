@@ -93,7 +93,6 @@ def range_sum_of_vertical_order_traversal(root):
     min_x = float('inf')
     max_x = float('-inf')
     queue = collections.deque([(x, root)])
-    
 
     while queue:
         x, node = queue.popleft()
@@ -108,11 +107,10 @@ def range_sum_of_vertical_order_traversal(root):
     for x in range(min_x, max_x + 1):
         res.append(column_items[x])
     
+    
     return res
 
 
-
-        
 if __name__ == "__main__":
     #instructions = ["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
     #vals = [[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
@@ -183,10 +181,34 @@ if __name__ == "__main__":
 
     # print(range_sum_of_vertical_order_traversal(root))
 
-    s = "lee(t(c)o)de)"
-    #s = "a)b(c)d"
+    # s = "lee(t(c)o)de)"
+    # s = "a)b(c)d"
     # "ab(c)d"
-    print(minimum_remove_to_make_valid_parentheses(s))
+    # print(minimum_remove_to_make_valid_parentheses(s))
 
+    # root = TreeNode(1)
+    # a = TreeNode(2)
+    # b = TreeNode(3)
+    # c = TreeNode(4)
+    # d = TreeNode(5)
+
+
+    # root.left = a
+    # root.right = b
+    # a.right = d
+    # b.right = c
+
+    root = TreeNode(1)
+    a = TreeNode(2)
+    b = TreeNode(3)
+    c = TreeNode(4)
+    d = TreeNode(5)
+
+
+    root.left = a
+    root.right = b
+    a.left = c
+    c.left = d
+    print(binary_tree_right_side_view(root))
 
 

@@ -244,14 +244,27 @@ if __name__ == "__main__":
     #print(merge_intervals(intervals=[[1,4],[0,4]]))
     #print(find_first_and_last_position_of_element_in_sorted_array(nums=[5,7,7,8,8,10], target=8))
     
-    e = TreeNode(4)
-    d = TreeNode(3)
-    c = TreeNode(5)
-    b = TreeNode(2)
+    # e = TreeNode(4)
+    # d = TreeNode(3)
+    # c = TreeNode(5)
+    # b = TreeNode(2)
 
-    root = TreeNode(1, b, d)
-    b.right = c
-    b.left = None
-    d.right = e
-    d.left = None
+    # root = TreeNode(1, b, d)
+    # b.right = c
+    # b.left = None
+    # d.right = e
+    # d.left = None
+
+    root = TreeNode(1)
+    a = TreeNode(2)
+    b = TreeNode(3)
+    c = TreeNode(4)
+    d = TreeNode(5)
+
+
+    root.left = a
+    root.right = b
+    a.left = c
+    c.left = d
+
     print(binary_tree_right_side_view(root))
