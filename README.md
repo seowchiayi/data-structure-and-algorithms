@@ -1,35 +1,49 @@
-# Data Structure & Algorithms Interview Prep
+# Leetcode notes
 
-## Website 1: [algomap.io](https://algomap.io)
+1. BFS
+- find shortest path in grid
+- print node values in specific order
 
-### Questions completed: 20/100
+questions:
 
-### Topics:
-1. Arrays & Strings ✅
-2. Hashmaps & Sets ✅
-3. 2 Pointers 📍
-4. Stacks
-5. Linked Lists
-6. Binary Search
-7. Sliding Window
-8. Trees
-9. Heaps
-10. Recursive Backtracking
-11. Graphs
-12. Dynamic Programming
 
-## Website 2: [interviewcake.com](https://interviewcake.com)
+2. DFS
+- find longest path in tree
 
-### Questions completed: 10/39
+questions:
 
-### Topics:
-1. Arrays & Strings ✅
-2. Hashing and Hash tables ✅
-3. Greedy Algorithms
-4. Sorting, Searching, and Logarithms 📍
-5. Trees and Graphs
-6. Dynamic programming and Recursion
-7. Queues and Stacks
-8. Linked Lists
-9. System Design
+
+3. Stack
+- delete from end of the list frequently
+
+
+4. Hashmaps
+- lookup with O(n)
+- count number/character occurence
+
+questions:
+
+5. Two pointer/Binary search
+- traverse an array
+
+questions:
+
+6. Min/Max Heap
+- find Kth element
+
+questions:
+
+
+# Notes dump
+1. subarray sum equals K/divisible by K/multiple of K is solved by using prefix sum
+    - prefix sum is the accumulative sum of each numbers as you go along the array
+    - commonly used with a hashmap to track historical seen sums
+    - if the current sum is being seen before, it means K existed
+
+2. speak out thoughts when solving leetcode questions
+3. write down bullet points of how to solve a question
+4. think about edge cases first before solution
+
+# Solved leetcode questions
+https://grape-wolf-71f.notion.site/191353924ffd80138f04d447d98b7e88?v=191353924ffd809bb185000cefa41d86&pvs=4
 
