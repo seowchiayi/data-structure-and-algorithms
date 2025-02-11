@@ -43,6 +43,7 @@ questions:
 2. speak out thoughts when solving leetcode questions
 3. write down bullet points of how to solve a question
 4. think about edge cases first before solution
+5. show interviewer you have weigh the pros & cons of every solution
 
 # Solved leetcode questions
 https://grape-wolf-71f.notion.site/191353924ffd80138f04d447d98b7e88?v=191353924ffd809bb185000cefa41d86&pvs=4

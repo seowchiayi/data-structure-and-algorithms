@@ -102,20 +102,6 @@ def subarray_sum_equals_k(nums, k):
 
     return res
 
-
-
-
-    
-    
-
-
-
-        
-            
-                
-
-
-
 if __name__ == "__main__":
     #print(shortest_path_in_binary_matrix(grid = [[0,1],[1,0]]))
     #print(shortest_path_in_binary_matrix(grid = [[0,0,0],[1,1,0],[1,1,0]]))

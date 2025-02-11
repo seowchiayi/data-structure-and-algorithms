@@ -87,7 +87,6 @@ def k_closest_points_to_origin(points: List[List[int]], k: int):
             heapq.heappush(heap, (-((point[0]**2) + (point[1]**2)), point[0], point[1]))
             heapq.heappop(heap)
 
-
     return [[item[1], item[2]] for item in heap]
 
 def continuous_subarray_sum(nums: List[int], k: int):
@@ -98,9 +97,9 @@ def continuous_subarray_sum(nums: List[int], k: int):
         r = total % k
         if r not in remainder:
             remainder[r] = i
-        elif i - remainder[r] > 1:
+        elif i - remainder[r] > 1: # ensures subarray has at least two elements
             return True
-    
+        
     return False
 
 def pow(base, power):
@@ -143,7 +142,6 @@ def pow(base, power):
     res = fast_pow(base, power)
 
     return 1/res if is_neg else res
-
 
 def merge_intervals(intervals: List[List[int]]):
     res = []
@@ -233,7 +231,7 @@ if __name__ == "__main__":
     #print(S.range_sum_of_bst(root=root, low=7, high=15))
     #print(S.range_sum_of_bst_iterative(root=root, low=7, high=15))
     #print(k_closest_points_to_origin(points=[[1,3],[-2,2]], k=1))
-    #print(continuous_subarray_sum(nums=[1, 2, 3, 4], k=6))
+    print(continuous_subarray_sum(nums=[1, 2, 3, 4], k=6))
     #print(continuous_subarray_sum(nums=[23,2,4,6,7], k=6))
     #print(continuous_subarray_sum(nums=[5,0,0,0], k=3))
     #print(continuous_subarray_sum(nums=[1,2,3], k=5))
@@ -255,16 +253,16 @@ if __name__ == "__main__":
     # d.right = e
     # d.left = None
 
-    root = TreeNode(1)
-    a = TreeNode(2)
-    b = TreeNode(3)
-    c = TreeNode(4)
-    d = TreeNode(5)
+    # root = TreeNode(1)
+    # a = TreeNode(2)
+    # b = TreeNode(3)
+    # c = TreeNode(4)
+    # d = TreeNode(5)
 
 
-    root.left = a
-    root.right = b
-    a.left = c
-    c.left = d
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # c.left = d
 
-    print(binary_tree_right_side_view(root))
+    # print(binary_tree_right_side_view(root))
