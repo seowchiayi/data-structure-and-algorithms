@@ -108,31 +108,36 @@ class TreeNode:
         self.right = right
 
 def vertical_order_traversal_of_binary_tree(root):
-    queue = collections.deque([(0, root)])
+    if not root:
+        return []
+    queue = collections.deque([(0, 0, root)])
     res = []
+    min_j = float('inf')
+    max_j = float('-inf')
     column_items = collections.defaultdict(list)
-    min_x = float('inf')
-    max_x = float('-inf')
     while queue:
-        x, node = queue.pop()
-        column_items[x].append(node.val)
-        min_x = min(x, min_x)
-        max_x = max(x, max_x)
-        if node.left:
-            queue.append((x - 1, node.left))
-        if node.right:
-            queue.append((x + 1, node.right))
-    
-    
-    for i in range(min_x, max_x + 1):
-        if len(column_items[i]) > 1:
-            sort = column_items[i].sorted()
-            res.append(sort)
-        else:
-            res.append(column_items[i])
-    
-    return res
+        i, j, node = queue.popleft()
 
+        column_items[j].append((node.val, i))
+
+        min_j = min(j, min_j)
+        max_j = max(j, max_j)
+
+        if node.left:
+            queue.append((i + 1, j - 1, node.left))
+        if node.right:
+            queue.append((i + 1, j + 1, node.right))
+
+    for j in range(min_j, max_j + 1):
+        items = column_items[j]
+
+        items.sort(key=lambda x:(x[1], x[0]))
+
+        items = [val for val, _ in items]
+
+        res.append(items)
+
+    return res
 
 
 if __name__ == "__main__":
@@ -140,10 +145,10 @@ if __name__ == "__main__":
     # b = NestedInteger(2)
     # c = NestedInteger([1,1])
     # print(nested_list_weight_sum(nestedList=[a,b,c]))
-    a = NestedInteger(1)
-    b = NestedInteger([4, [6]])
+    #a = NestedInteger(1)
+    #b = NestedInteger([4, [6]])
     #print(nested_list_weight_sum(nestedList=[a, b]))
-    print(diagonal_traverse(mat=[[1,2,3],[4,5,6],[7,8,9]]))
+    #print(diagonal_traverse(mat=[[1,2,3],[4,5,6],[7,8,9]]))
 
     root = TreeNode(3)
     a = TreeNode(9)

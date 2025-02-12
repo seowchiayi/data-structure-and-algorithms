@@ -1,5 +1,6 @@
 import collections
 import heapq
+from typing import List
 
 def top_k_frequent_elements(nums, k):
     d = collections.defaultdict(int)
@@ -21,3 +22,4 @@ def top_k_frequent_elements(nums, k):
 
 if __name__ == "__main__":
     print(top_k_frequent_elements(nums=[1,1,1,2,2,3], k=2))
+    
