@@ -1,5 +1,16 @@
 from typing import List
 
+def merge_sorted_array(nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    x = m + n - 1
+    y = n - 1
+    z = m - 1
+
+    if nums2[y] > nums1[x]:
+        nums1[z] = nums2[y]
+    elif nums2[y] < nums1[x]:
+        nums1[x] = nums2[y]
+        
+        
 def diagonal_traverse(mat):
     res = []
     i, j = 0, 0
@@ -76,6 +87,29 @@ def kth_missing_positive_number(arr: List[int], k: int) -> int:
     
     if k:
         return arr[-1] + k
+    
+def number_of_island(grid):
+    num_islands = 0
+    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+    def set_island_zeros(grid, row, col):
+        if (0 <= row < len(grid)) and (0 <= col < len(grid[0])) and grid[row][col] == "1":
+            grid[row][col] = "0"
+
+            for row_inc, col_inc in directions:
+                set_island_zeros(grid, row + row_inc, col + col_inc)
+
+    for row in range(len(grid)):
+        for col in range(len(grid[0])):
+            if grid[row][col] == "1":
+                num_islands += 1
+
+                set_island_zeros(grid, row, col)
+    
+    return num_islands
+
+
+def making_a_large_island():
 
 
 if __name__ == "__main__":
@@ -86,5 +120,11 @@ if __name__ == "__main__":
     #print(toeplits_matrix(matrix=[[22,33,98],[34,22,33]]))
     #print(toeplits_matrix(matrix=[[11,74,7,93],[40,11,74,7]]))
     #print(toeplits_matrix(matrix=[[53,0,70,43,30,54,99,21,42,96,64,77,24],[68,53,95,70,43,30,54,99,21,42,96,64,77],[39,68,53,95,70,43,30,54,99,21,42,96,64]]))
-    print(kth_missing_positive_number(arr = [2,3,4,7,11], k = 5))
-    print(kth_missing_positive_number(arr = [1,2,3,4], k = 2))
+    # print(kth_missing_positive_number(arr = [2,3,4,7,11], k = 5))
+    # print(kth_missing_positive_number(arr = [1,2,3,4], k = 2))
+    print(number_of_island(grid = [
+        ["1","1","0","0","0"],
+        ["1","1","0","0","0"],
+        ["0","0","1","0","0"],
+        ["0","0","0","1","1"]
+    ]))

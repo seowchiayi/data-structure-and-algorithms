@@ -1,4 +1,6 @@
 from typing import Optional
+import heapq
+
 class Node:
     def __init__(self, x: int, next: 'Node'=None, random: 'Node'=None)
         self.val = int(x)
@@ -26,6 +28,29 @@ def copy_list_with_random_pointer(head: 'Optional[Node]'):
 
     return old_to_new[head]
 
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def merge_sorted_lists(lists):
+    heap = []
+    for i, node in enumerate(lists):
+        if node:
+            heapq.heappush(heap, (node.val, i, node))
+
+        D = ListNode()
+        cur = D
+        while heap:
+            val, i, node = heapq.heappop(heap)
+            cur.next = node
+            cur = node
+            node = node.next
+            if node:
+                heapq.heappush(heap, (node.val, i, node))
+
+        return D.next
 
 
 if __name__ == "__main__":
