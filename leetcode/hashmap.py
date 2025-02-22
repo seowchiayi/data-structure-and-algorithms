@@ -1,4 +1,5 @@
 import collections
+from typing import List
 
 def custom_sort_string(order, s):
     d = collections.defaultdict(int)
@@ -70,7 +71,27 @@ def minimum_add_to_make_valid_parentheses(s: str) -> int:
     
         return d["added"]
     
+def group_strings(strings: List[str]):
+    grouping_dict = collections.defaultdict(list)
+
+    for string in strings:
+        if len(string) == 1:
+            grouping_dict[(-1,)].append(string)
+        else:
+            char_diffs = []
+            i = 1
+
+            while i < len(string):
+                # a is 1 for ord() funct
+                # modulo 26 is to get rid of
+                char_diffs.append(ord(string[i]) - ord(string[i-1])) % 26
+                i += 1
+            
+            grouping_dict[tuple(char_diffs)].append(string)
     
+    #key => list of words for that shifting
+
+    return list(grouping_dict.values())
 
 
 if __name__ == "__main__":

@@ -46,6 +46,8 @@ questions:
 5. show interviewer you have weigh the pros & cons of every solution
 6. reverse traverse list with `for i in range(len(list) -1, -1, -1): list[i]...`
 7. traverse a list with index and value at the same time with enumerate `eg: for index, value in enumerate(list): ...`
+8. list should not be the key of a dictionary in python because list is mutable, only immutable data structures are valid for python dictionary keys, use tuple instead
+9. return the values in a dictionary using dict.values()
 
 # Solved leetcode questions
 https://grape-wolf-71f.notion.site/191353924ffd80138f04d447d98b7e88?v=191353924ffd809bb185000cefa41d86&pvs=4
