@@ -96,9 +96,6 @@ def longest_consecutive_sequence(nums: List[int]):
     return longest
 
 
-        
-
-
 if __name__ == "__main__":
     # nums = [2,2,1,1,1,2,2]
     # print(majorityElement(nums))

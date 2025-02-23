@@ -9,6 +9,8 @@ questions:
 
 2. DFS
 - find longest path in tree
+- uses last in first out concept
+- common data structures: stack [], double ended queuecollections.deque([])
 
 questions:
 

@@ -1,20 +1,7 @@
 from typing import List, Optional
 import heapq
 import collections
-# Practice recursion with reversing singly linked list
-class SinglyLinkedList():
-    def __init__(self, val: int, next=None):
-        self.val = val
-        self.next = next
 
-def reverse(node: SinglyLinkedList):
-    # Time: O(n) -> n is the number of nodes in the linkedin
-    # Space: O(n) -> 
-    if not node:
-        return
-    
-    reverse(node.next)
-    print(node.val)
 
 def subset(nums: List[int]):
     res, sol = [], []
@@ -209,14 +196,6 @@ def binary_tree_right_side_view(root: Optional[TreeNode]):
 
 
 if __name__ == "__main__":
-    # head = SinglyLinkedList(1)
-    # A = SinglyLinkedList(2)
-    # B = SinglyLinkedList(3)
-
-    # head.next = A
-    # A.next = B
-    # Debug this function
-    #reverse(head)
     #print(subset(nums = [1, 2, 3]))
     # lst = [10,5,15,3,7,None,18]
     # c = TreeNode(val=3, left=None, right=None)

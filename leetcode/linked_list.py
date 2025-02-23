@@ -1,6 +1,21 @@
 from typing import Optional
 import heapq
 
+# Practice recursion with reversing singly linked list
+class SinglyLinkedList():
+    def __init__(self, val: int, next=None):
+        self.val = val
+        self.next = next
+
+def reverse_singly_linked_list(node: SinglyLinkedList):
+    # Time: O(n) -> n is the number of nodes in the linkedin
+    # Space: O(n) -> 
+    if not node:
+        return
+    
+    reverse_singly_linked_list(node.next)
+    print(node.val)
+
 class Node:
     def __init__(self, x: int, next: 'Node'=None, random: 'Node'=None)
         self.val = int(x)
@@ -54,4 +69,11 @@ def merge_sorted_lists(lists):
 
 
 if __name__ == "__main__":
-    print(copy_list_with_random_pointer)
+    #print(copy_list_with_random_pointer)
+    head = SinglyLinkedList(1)
+    A = SinglyLinkedList(2)
+    B = SinglyLinkedList(3)
+
+    head.next = A
+    A.next = B
+    reverse_singly_linked_list(head)

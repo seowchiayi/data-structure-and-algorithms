@@ -71,7 +71,7 @@ def minimum_add_to_make_valid_parentheses(s: str) -> int:
     
         return d["added"]
     
-def group_strings(strings: List[str]):
+def group_shifted_strings(strings: List[str]):
     grouping_dict = collections.defaultdict(list)
 
     for string in strings:
@@ -93,6 +93,47 @@ def group_strings(strings: List[str]):
 
     return list(grouping_dict.values())
 
+def accounts_merge(accounts: List[List[str]]):
+    graph = collections.defaultdict(set)
+
+    email_to_name = {}
+
+    for account in accounts:
+        name = account[0]
+
+        for email in account[1:]:
+            # the first email would have all the connections to other emails in the graph
+            graph[email].add(account[1])
+            graph[account[1]].add(email)
+            # the first email would have all the connections to other emails in the graph
+
+            email_to_name[email] = name
+
+    res = []
+    visited = set()
+
+    for email in graph:
+        if email not in visited:
+            stack = [email]
+            visited.add(email)
+
+            local_res = []
+
+            while stack:
+                node = stack.pop()
+                local_res.append(node)
+                for edge in graph[node]:
+                    if edge not in visited:
+                        stack.append(edge)
+                        visited.add(edge)
+
+            res.append(email_to_name[email] + sorted(local_res))
+        
+    return res
+    
+
+     
+
 
 if __name__ == "__main__":
     # print(custom_sort_string(order="cba", s="abcd"))
@@ -102,7 +143,8 @@ if __name__ == "__main__":
     # print(movingAverage.next(10)) # return 5.5 = (1 + 10) / 2
     # print(movingAverage.next(3)) # return 4.66667 = (1 + 10 + 3) / 3
     # print(movingAverage.next(5)) # return 6.0 = (10 + 3 + 5) / 3
-
-    print(minimum_add_to_make_valid_parentheses(s="((("))
-    print(minimum_add_to_make_valid_parentheses(s=")))"))
+    #print(minimum_add_to_make_valid_parentheses(s="((("))
+    #print(minimum_add_to_make_valid_parentheses(s=")))"))
     #print(minimum_add_to_make_valid_parentheses(s="lee(t(c)o)de)(("))
+    print(accounts_merge([["John","johnsmith@mail.com","john_newyork@mail.com"],["John","johnsmith@mail.com","john00@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]]))
+    
