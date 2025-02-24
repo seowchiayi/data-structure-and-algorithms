@@ -1,5 +1,7 @@
 from typing import Optional
 import heapq
+import collections
+import unittest
 
 # Practice recursion with reversing singly linked list
 class SinglyLinkedList():
@@ -16,8 +18,8 @@ def reverse_singly_linked_list(node: SinglyLinkedList):
     reverse_singly_linked_list(node.next)
     print(node.val)
 
-class Node:
-    def __init__(self, x: int, next: 'Node'=None, random: 'Node'=None)
+class CopyListWithRandomPointerNode:
+    def __init__(self, x: int, next: 'Node'=None, random: 'Node'=None):
         self.val = int(x)
         self.next = next
         self.random = random
@@ -67,13 +69,99 @@ def merge_sorted_lists(lists):
 
         return D.next
 
+class Node:
+    def __init__(self, val=None, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def convert_binary_search_tree_to_sorted_doubly_linked_list(root: 'Optional[Node]'):
+    # traverse using inorder dfs left, node, right because we want to values to be sorted
+    # initialize a queue with root node
+    # using while loop, go to the leftest node first pop the leftest node, pop the current node, then only to the right node and pop the right node
+    # after every pop operation, append to the left the pop value node and relabel the left and right node value
+    stack = []
+    head = None
+    prev = None
+    current = root
+
+    while current or stack:
+        while current:
+            stack.append(current)
+            current = current.left
+        
+        current = stack.pop()
+
+        if not head:
+            head = current
+        else:
+            prev.right = current
+            current.left = prev
+        
+        prev = current
+
+        current = current.right
+
+    tail = prev
+    head.left = tail
+    tail.right = head
+
+    return head
+
+
 
 if __name__ == "__main__":
     #print(copy_list_with_random_pointer)
-    head = SinglyLinkedList(1)
-    A = SinglyLinkedList(2)
-    B = SinglyLinkedList(3)
+    # head = SinglyLinkedList(1)
+    # A = SinglyLinkedList(2)
+    # B = SinglyLinkedList(3)
 
-    head.next = A
-    A.next = B
-    reverse_singly_linked_list(head)
+    # head.next = A
+    # A.next = B
+    # reverse_singly_linked_list(head)
+    root = Node(4)
+    a = Node(2)
+    b = Node(5)
+    c = Node(1)
+    d = Node(3)
+
+    root.left = a
+    root.right = b
+    a.left = c
+    a.right = d
+
+    current = convert_binary_search_tree_to_sorted_doubly_linked_list(root)
+
+    # root = Node(-1)
+    # b = Node(1)
+    # c = Node(9)
+
+    # root.right = b
+    # b.right = c
+
+    # current = convert_binary_search_tree_to_sorted_doubly_linked_list(root)
+    
+    # while current:
+    #     print(current.val)
+    #     current = current.right
+
+    root = Node(4)
+    a = Node(2)
+    b = Node(9)
+    c = Node(1)
+    d = Node(3)
+    e = Node(-1)
+    f = Node(-2)
+
+    root.left = a
+    root.right = b
+    a.left = c
+    a.right = d
+    c.left = e
+    e.left = f
+
+    current = convert_binary_search_tree_to_sorted_doubly_linked_list(root)
+    while current:
+        print(current.val)
+        current = current.right
+    

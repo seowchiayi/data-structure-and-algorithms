@@ -87,27 +87,6 @@ def convert_array_of_edges_to_adjacency_list(A):
     # print(D[3]) <- what is node 3 (key) connected to? (values)
     return D
 
-def dfs_recursion(node):
-    if node:
-        print(node.val)
-        if node.left:
-            dfs_recursion(node.left)
-        if node.right:
-            dfs_recursion(node.right)
-
-
-def dfs_iterative(node):
-    stack = [node]
-
-    while stack:
-        if node:
-            node = stack.pop()
-            print(node.val)
-            if node.right:
-                stack.append(node.right)
-            if node.left:
-                stack.append(node.left)
-
 def dfs_recursion_with_adjacency_lst(adjacency_lst, seen, root):
     print(root)
     for children in adjacency_lst[root]:
