@@ -76,10 +76,6 @@ class Node:
         self.right = right
 
 def convert_binary_search_tree_to_sorted_doubly_linked_list(root: 'Optional[Node]'):
-    # traverse using inorder dfs left, node, right because we want to values to be sorted
-    # initialize a queue with root node
-    # using while loop, go to the leftest node first pop the leftest node, pop the current node, then only to the right node and pop the right node
-    # after every pop operation, append to the left the pop value node and relabel the left and right node value
     stack = []
     head = None
     prev = None
@@ -108,6 +104,52 @@ def convert_binary_search_tree_to_sorted_doubly_linked_list(root: 'Optional[Node
 
     return head
 
+class LinkedListNode:
+    def __init__(self, val=None, next=None):
+        self.val = val
+        self.next = next
+
+def insert_into_a_sorted_circular_linked_list(head, insertVal):
+    # handle edge case where head = None
+    # create a new list and append head pointer
+    # set prev as None
+    # set new_node = None(insertVal)
+    # set head = None
+    # if not head = set first current as head
+    # if current >= insertVal: insertVal.right = current, current.left = insertVal
+    # prev.right = new_node, new_node.left = prev
+    # set prev as current
+    # result.append(prev)
+    # return result
+    
+
+    if not head:
+        new_head = Node(insertVal)
+        new_head.next = new_head
+
+        return new_head
+    
+    current = head
+    while current.next != head:
+        if current.val <= insertVal <= current.next.val:
+            new_node = Node(insertVal, current.next)
+
+            current.next = new_node
+
+            return head
+        
+        elif current.val > current.next.val:
+            if insertVal >= current.val or insertVal <= current.next.val:
+                new_node = Node(insertVal, current.next)
+                current.next = new_node
+
+                return head
+        current = current.next
+    
+    new_node = Node(insertVal, current.next)
+    current.next = new_node
+    
+    return head
 
 
 if __name__ == "__main__":
@@ -119,18 +161,18 @@ if __name__ == "__main__":
     # head.next = A
     # A.next = B
     # reverse_singly_linked_list(head)
-    root = Node(4)
-    a = Node(2)
-    b = Node(5)
-    c = Node(1)
-    d = Node(3)
+    # root = Node(4)
+    # a = Node(2)
+    # b = Node(5)
+    # c = Node(1)
+    # d = Node(3)
 
-    root.left = a
-    root.right = b
-    a.left = c
-    a.right = d
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # a.right = d
 
-    current = convert_binary_search_tree_to_sorted_doubly_linked_list(root)
+    # current = convert_binary_search_tree_to_sorted_doubly_linked_list(root)
 
     # root = Node(-1)
     # b = Node(1)
@@ -145,23 +187,29 @@ if __name__ == "__main__":
     #     print(current.val)
     #     current = current.right
 
-    root = Node(4)
-    a = Node(2)
-    b = Node(9)
-    c = Node(1)
-    d = Node(3)
-    e = Node(-1)
-    f = Node(-2)
+    # root = Node(4)
+    # a = Node(2)
+    # b = Node(9)
+    # c = Node(1)
+    # d = Node(3)
+    # e = Node(-1)
+    # f = Node(-2)
 
-    root.left = a
-    root.right = b
-    a.left = c
-    a.right = d
-    c.left = e
-    e.left = f
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # a.right = d
+    # c.left = e
+    # e.left = f
 
-    current = convert_binary_search_tree_to_sorted_doubly_linked_list(root)
-    while current:
-        print(current.val)
-        current = current.right
-    
+    # current = convert_binary_search_tree_to_sorted_doubly_linked_list(root)
+
+    root = LinkedListNode(3)
+    a = LinkedListNode(4)
+    b = LinkedListNode(1)
+
+    root.next = a
+    a.next = b
+    b.next = root
+
+    node = insert_into_a_sorted_circular_linked_list(root, 2)

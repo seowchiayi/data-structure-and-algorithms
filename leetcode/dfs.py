@@ -54,6 +54,43 @@ class TreeNode:
         
         return result
 
+def sum_root_to_leaf_numbers(root):
+    # using 
+    #       4
+    #      / \
+    #     9  0
+    #    / \
+    #   5  1
+    # initialize level = 0
+    # initialize sum = root.val (4) because we will always want to add root.val in any case
+    # initialize dfs 
+    # initialize multiplier = 10
+    # add node 0, 9 to empty stack
+    # sum += 4 * 10
+    # pop value 9
+    # sum += 4 * 10 * 10 + 9
+    # divide multiplier by 10
+    # add value 1, 5 to stack -> [0, 1, 5]
+    # pop value 5, add value, stack = [0, 1]
+    # sum += 4 * 10 * 10 * 10 + 9 + 5
+    # once there is no left and right, reset sum to 495 - 5, add sum to total sum += 495
+    # have 4 conditions if right if left if not right or left if not stack: reset sum to 4
+    
+    stack = [(root, 0)]
+    total_sum = 0
+    sum = root.val
+    while stack:
+        node, sum = stack.pop()
+        sum = (sum * 10) + node.val
+        if node.right:
+            stack.append((node.right, sum))
+        if node.left:
+            stack.append((node.left, sum))
+        if not node.left and not node.right:
+            total_sum += sum
+    
+    return total_sum
+        
 
 if __name__ == "__main__":
     #       1

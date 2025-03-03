@@ -38,6 +38,12 @@ questions:
 
 questions:
 
+7. Sliding Window
+- use 2 pointer approach
+- normally left and right pointer start on the same index, right pointer moves forward, hits a condition and stops, then left pointer will move to meet right pointer and then right pointer will increment by one index and repeat the same process
+
+questions: max consecutive ones
+
 
 # Notes dump
 1. subarray sum equals K/divisible by K/multiple of K is solved by using prefix sum
