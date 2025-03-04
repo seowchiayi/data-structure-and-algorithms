@@ -140,6 +140,49 @@ def vertical_order_traversal_of_binary_tree(root):
     return res
 
 
+def even_odd_tree(root):
+    queue = collections.deque([(root, 0)]) 
+    seen = {}
+    while queue:
+        node, level = queue.pop()
+        if level == 0:
+            if root.val != node.val:
+                return False
+            if not node.val % 2 == 0:
+                return False
+        elif level not in seen:
+            if level % 2 == 0:
+                if node.val % 2 == 0:
+                    return False
+                seen[level] = node.val
+            elif not level % 2 == 0:
+                if not node.val % 2 == 0:
+                    return False
+                seen[level] = node.val
+        elif level in seen:
+            if level % 2 == 0:
+                if node.val % 2 == 0:
+                    return False
+                if seen[level] >= node.val:
+                    return False
+                seen[level] = node.val
+            elif not level % 2 == 0:
+                if not node.val % 2 == 0:
+                    return False
+                if seen[level] <= node.val:
+                    return False
+                seen[level] = node.val
+
+        if node.left:
+            queue.appendleft((node.left, level + 1))
+        
+        if node.right:
+            queue.appendleft((node.right, level + 1))
+
+    return True
+
+
+
 if __name__ == "__main__":
     # a = NestedInteger([1,1])
     # b = NestedInteger(2)
@@ -150,68 +193,106 @@ if __name__ == "__main__":
     #print(nested_list_weight_sum(nestedList=[a, b]))
     #print(diagonal_traverse(mat=[[1,2,3],[4,5,6],[7,8,9]]))
 
-    root = TreeNode(3)
-    a = TreeNode(9)
-    b = TreeNode(20)
-    c = TreeNode(15)
-    d = TreeNode(7)
+    # root = TreeNode(3)
+    # a = TreeNode(9)
+    # b = TreeNode(20)
+    # c = TreeNode(15)
+    # d = TreeNode(7)
 
 
-    root.left = a
-    root.right = b
-    b.left = c
-    b.right = d
+    # root.left = a
+    # root.right = b
+    # b.left = c
+    # b.right = d
     # [[9], [3, 15], [20], [7]]
-    print(vertical_order_traversal_of_binary_tree(root))
+    # print(vertical_order_traversal_of_binary_tree(root))
 
-    root = TreeNode(1)
-    a = TreeNode(2)
-    b = TreeNode(3)
-    c = TreeNode(4)
-    d = TreeNode(6)
-    e = TreeNode(5)
-    f = TreeNode(7)
+    # root = TreeNode(1)
+    # a = TreeNode(2)
+    # b = TreeNode(3)
+    # c = TreeNode(4)
+    # d = TreeNode(6)
+    # e = TreeNode(5)
+    # f = TreeNode(7)
 
 
-    root.left = a
-    root.right = b
-    a.left = c
-    a.right = d
-    b.left = e
-    b.right = f
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # a.right = d
+    # b.left = e
+    # b.right = f
     # [[4], [2], [1, 5, 6], [3], [7]]
-    print(vertical_order_traversal_of_binary_tree(root))
+    # print(vertical_order_traversal_of_binary_tree(root))
 
-    root = TreeNode(3)
-    a = TreeNode(1)
-    b = TreeNode(4)
-    c = TreeNode(0)
-    d = TreeNode(2)
-    e = TreeNode(2)
+    # root = TreeNode(3)
+    # a = TreeNode(1)
+    # b = TreeNode(4)
+    # c = TreeNode(0)
+    # d = TreeNode(2)
+    # e = TreeNode(2)
 
-    root.left = a
-    root.right = b
-    a.left = c
-    a.right = d
-    b.left = e
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # a.right = d
+    # b.left = e
     # [[0],[1],[3,2,2],[4]]
-    print(vertical_order_traversal_of_binary_tree(root))
+    # print(vertical_order_traversal_of_binary_tree(root))
 
-    root = TreeNode(1)
-    a = TreeNode(2)
-    b = TreeNode(3)
-    c = TreeNode(4)
-    d = TreeNode(5)
-    e = TreeNode(6)
-    f = TreeNode(7)
+    # root = TreeNode(1)
+    # a = TreeNode(2)
+    # b = TreeNode(3)
+    # c = TreeNode(4)
+    # d = TreeNode(5)
+    # e = TreeNode(6)
+    # f = TreeNode(7)
+
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # a.right = d
+    # b.left = e
+    # [[4],[2],[1,5,6],[3],[7]]
+    # print(vertical_order_traversal_of_binary_tree(root))
+
+    # root = TreeNode(1)
+    # a = TreeNode(10)
+    # b = TreeNode(4)
+    # c = TreeNode(3)
+    # d = TreeNode(7)
+    # e = TreeNode(9)
+    # f = TreeNode(12)
+    # g = TreeNode(8)
+    # h = TreeNode(6)
+    # i = TreeNode(2)
+
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # c.left = f
+    # c.right = g
+    # b.left = d
+    # b.right = e
+    # d.left = h
+    # e.right = i
+    
+    # print(even_odd_tree(root))
+
+    root = TreeNode(2)
+    a = TreeNode(12)
+    b = TreeNode(8)
+    c = TreeNode(5)
+    d = TreeNode(9)
+    e = TreeNode(18)
+    f = TreeNode(16)
 
     root.left = a
     root.right = b
     a.left = c
     a.right = d
-    b.left = e
-    # [[4],[2],[1,5,6],[3],[7]]
-    print(vertical_order_traversal_of_binary_tree(root))
-
-
+    c.left = e
+    c.right = f
+    
+    print(even_odd_tree(root))
     

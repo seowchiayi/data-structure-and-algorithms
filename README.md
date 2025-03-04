@@ -11,7 +11,7 @@ questions:
 2. DFS
 - find longest path in tree
 - uses last in first out concept
-- common data structures: stack [], double ended queuecollections.deque([])
+- common data structures: stack [], double ended queue, collections.deque([])
 - traversal patterns: preorder (node, left, right), inorder (left, node, right), postorder (left, right, node)
 - ** inorder traversal always give you elements in ascending sorted order 
 
@@ -59,6 +59,9 @@ questions: max consecutive ones
 8. list should not be the key of a dictionary in python because list is mutable, only immutable data structures are valid for python dictionary keys, use tuple instead
 9. return the values in a dictionary using dict.values()
 10. Space complexity for binary search trees is dependent on whether the nodes are balanced or skewed on one side
+11. pre order runs the body of the node first and then the body of the left children and then the body of the right children
+12. if you are able to simplify the question we wont have to think about the cases (ex: insert into sorted circular linked list)
+13. calculate the ascii letter difference between two alphabets by using ord('a') - ord('b') = -1
 
 # Best way to show problem solving skills in steps
 1. Read question carefully

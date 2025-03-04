@@ -54,6 +54,9 @@ class TreeNode:
         
         return result
 
+    
+
+
 def sum_root_to_leaf_numbers(root):
     # using 
     #       4
@@ -90,7 +93,43 @@ def sum_root_to_leaf_numbers(root):
             total_sum += sum
     
     return total_sum
-        
+
+
+def count_depth(node):
+    max_level = 0
+    stack = [(node, 0)]
+
+    while stack:
+        node, level = stack.pop()
+        max_level = max(level, max_level)
+        if node.right:
+            stack.append((node.right, level + 1))
+        if node.left:
+            stack.append((node.left, level + 1))
+    return max_level + 1
+
+def smallest_subtree_with_all_deepest_nodes(node):
+    if not node:
+        return TreeNode(None)
+    stack = [node]
+
+    while stack:
+        node = stack.pop()
+        if not node.right:
+            right_depth = 0
+        if not node.left:
+            left_depth = 0
+        if node.right:
+            right_depth = count_depth(node.right)
+        if node.left:
+            left_depth = count_depth(node.left)
+        if right_depth > left_depth:
+            stack.append(node.right)
+        if right_depth < left_depth:
+            stack.append(node.left)
+    return node
+    
+
 
 if __name__ == "__main__":
     #       1
@@ -100,41 +139,91 @@ if __name__ == "__main__":
     #   4
     #  /
     # 5
-    root = TreeNode(val=1)
-    a = TreeNode(val=2)
-    b = TreeNode(val=3)
-    c = TreeNode(val=4)
-    d = TreeNode(val=5)
+    # root = TreeNode(val=1)
+    # a = TreeNode(val=2)
+    # b = TreeNode(val=3)
+    # c = TreeNode(val=4)
+    # d = TreeNode(val=5)
 
-    root.left = a
-    root.right = b
-    a.left = c
-    c.left = d
-    S = TreeNode()
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # c.left = d
+    # S = TreeNode()
     # expected to print 1, 2, 4, 5, 3 
     #S.dfs_recursion_without_data_structure(root)
-    S.stack = [root]
+    #S.stack = [root]
     #S.dfs_post_order_iterative_with_stack(root)
-    S.queue = collections.deque([root])
+    #S.queue = collections.deque([root])
     #S.dfs_post_order_iterative_with_queue(root)
-    root = TreeNode(4)
-    a = TreeNode(2)
-    b = TreeNode(5)
-    c = TreeNode(1)
-    d = TreeNode(3)
+    # root = TreeNode(4)
+    # a = TreeNode(2)
+    # b = TreeNode(5)
+    # c = TreeNode(1)
+    # d = TreeNode(3)
+
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # a.right = d
+    # print(S.dfs_in_order_iterative_with_queue(root))
+
+    # root = TreeNode(-1)
+    # b = TreeNode(1)
+    # c = TreeNode(9)
+
+    # root.right = b
+    # b.right = c
+
+    # print(S.dfs_in_order_iterative_with_queue(root))
+    root = TreeNode(3)
+    a = TreeNode(5)
+    b = TreeNode(1)
+    c = TreeNode(6)
+    d = TreeNode(2)
+    e = TreeNode(0)
+    f = TreeNode(8)
+    g = TreeNode(7)
+    h = TreeNode(4)
 
     root.left = a
     root.right = b
     a.left = c
     a.right = d
-    print(S.dfs_in_order_iterative_with_queue(root))
+    d.left = g
+    d.right = h
+    b.left = e
+    b.right = f
 
-    root = TreeNode(-1)
-    b = TreeNode(1)
-    c = TreeNode(9)
+    smallest_node = smallest_subtree_with_all_deepest_nodes(root)
+    print(smallest_node.val)
 
+    root = TreeNode(0)
+    a = TreeNode(1)
+    b = TreeNode(3)
+    c = TreeNode(2)
+
+    root.left = a
     root.right = b
-    b.right = c
+    a.right = c
 
-    print(S.dfs_in_order_iterative_with_queue(root))
+    smallest_node = smallest_subtree_with_all_deepest_nodes(root)
+    print(smallest_node.val)
 
+    root = TreeNode(0)
+    a = TreeNode(1)
+    b = TreeNode(3)
+    c = TreeNode(2)
+    d = TreeNode(6)
+    e = TreeNode(5)
+    f = TreeNode(4)
+
+    root.left = a
+    a.left = b
+    a.right = c
+    b.left = d
+    c.left = e
+    c.right = f
+
+    smallest_node = smallest_subtree_with_all_deepest_nodes(root)
+    print(smallest_node.val)
