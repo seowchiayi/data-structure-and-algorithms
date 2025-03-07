@@ -161,8 +161,132 @@ class MakeALargeIsland:
         else:
             return 0
         
-                        
+def alphabet_board_path(target: str):
+    board = {'a': [0, 0], 'b': [0, 1], 'c': [0, 2],
+        'd': [0, 3], 'e': [0, 4], 'f': [1, 0],
+        'g': [1, 1], 'h': [1, 2], 'i': [1, 3],
+        'j': [1, 4], 'k': [2, 0], 'l': [2, 1],
+        'm': [2, 2], 'n': [2, 3], 'o': [2, 4],
+        'p': [3, 0], 'q': [3, 1], 'r': [3, 2],
+        's': [3, 3], 't': [3, 4], 'u': [4, 0],
+        'v': [4, 1], 'w': [4, 2], 'x': [4, 3],
+        'y': [4, 4], 'z': [5, 0]}
+    
+    origins = []
+    for c in target:
+        if c in list(board.keys()):
+            origins.append(board[c])
+    
+    dests = []
+    for origin in origins:
+        origin_r, origin_c = origin[0], origin[1]
+        if not dests:
+            dest_r, dest_c = origin_r, origin_c
+            dests.append([dest_r, dest_c])
+            prev = [origin_r, origin_c]
+        else:
+            origin_r, origin_c = origin[0], origin[1]
+            dest_r, dest_c = origin_r - prev[0], origin_c - prev[1]
+            dests.append([dest_r, dest_c])
+            prev = [origin_r, origin_c]
+    
+    res = ""
+    for dest in dests:
+        dest_r, dest_c = dest[0], dest[1]
+        if dest_r > dest_c:
+            if dest_c < 0:
+                while dest_c != 0:
+                    res += 'L'
+                    dest_c += 1
+            if dest_c > 0:
+                while dest_c != 0:
+                    res += 'R'
+                    dest_c -= 1
+            if dest_r < 0:
+                while dest_r != 0:
+                    res += 'U'
+                    dest_r += 1
+            if dest_r > 0:
+                while dest_r != 0:
+                    res += 'D'
+                    dest_r -= 1
+        else:
+            if dest_r < 0:
+                while dest_r != 0:
+                    res += 'U'
+                    dest_r += 1
+            if dest_r > 0:
+                while dest_r != 0:
+                    res += 'D'
+                    dest_r -= 1
+            if dest_c < 0:
+                while dest_c != 0:
+                    res += 'L'
+                    dest_c += 1
+            if dest_c > 0:
+                while dest_c != 0:
+                    res += 'R'
+                    dest_c -= 1
+        res += "!"
+    return res
 
+def alphabet_board_path_improved(target: str):
+    board = {'a': [0, 0], 'b': [0, 1], 'c': [0, 2],
+    'd': [0, 3], 'e': [0, 4], 'f': [1, 0],
+    'g': [1, 1], 'h': [1, 2], 'i': [1, 3],
+    'j': [1, 4], 'k': [2, 0], 'l': [2, 1],
+    'm': [2, 2], 'n': [2, 3], 'o': [2, 4],
+    'p': [3, 0], 'q': [3, 1], 'r': [3, 2],
+    's': [3, 3], 't': [3, 4], 'u': [4, 0],
+    'v': [4, 1], 'w': [4, 2], 'x': [4, 3],
+    'y': [4, 4], 'z': [5, 0]}
+    
+    cur_r, cur_c = 0, 0
+    res = ""
+    for c in target:
+        dest_r, dest_c = board[c][0], board[c][1]
+        print(f"dest: {dest_r, dest_c}")
+        if cur_r == 5 and cur_c == 0:
+            # move vertically first then horizontally
+            if dest_r > cur_r:
+                while cur_r != dest_r:
+                    cur_r += 1
+                    res += "D"
+            elif dest_r < cur_r:
+                while cur_r != dest_r:
+                    cur_r -= 1
+                    res += "U"
+            if dest_c > cur_c:
+                while cur_c != dest_c:
+                    cur_c += 1
+                    res += "R"
+            elif dest_c < cur_c:
+                while cur_c != dest_c:
+                    cur_c -= 1
+                    res += "L"
+        else:
+            # move horizontally first then vertically
+            if dest_c > cur_c:
+                while cur_c != dest_c:
+                    cur_c += 1
+                    res += "R"
+            elif dest_c < cur_c:
+                while cur_c != dest_c:
+                    cur_c -= 1
+                    res += "L"
+            if dest_r > cur_r:
+                while cur_r != dest_r:
+                    cur_r += 1
+                    res += "D"
+            elif dest_r < cur_r:
+                while cur_r != dest_r:
+                    cur_r -= 1
+                    res += "U"
+            
+        res += "!"
+        print(f"cur: {cur_r, cur_c}")
+
+    return res
 
 if __name__ == "__main__":
     #print(diagonal_traverse(mat=[[1,2,3],[4,5,6],[7,8,9]]))
@@ -174,9 +298,13 @@ if __name__ == "__main__":
     #print(toeplits_matrix(matrix=[[53,0,70,43,30,54,99,21,42,96,64,77,24],[68,53,95,70,43,30,54,99,21,42,96,64,77],[39,68,53,95,70,43,30,54,99,21,42,96,64]]))
     # print(kth_missing_positive_number(arr = [2,3,4,7,11], k = 5))
     # print(kth_missing_positive_number(arr = [1,2,3,4], k = 2))
-    print(number_of_island(grid = [
-        ["1","1","0","0","0"],
-        ["1","1","0","0","0"],
-        ["0","0","1","0","0"],
-        ["0","0","0","1","1"]
-    ]))
+    # print(number_of_island(grid = [
+    #     ["1","1","0","0","0"],
+    #     ["1","1","0","0","0"],
+    #     ["0","0","1","0","0"],
+    #     ["0","0","0","1","1"]
+    # ]))
+    #print(alphabet_board_path("leet"))
+    #print(alphabet_board_path("zdz"))
+    #print(alphabet_board_path_improved("leet"))
+    print(alphabet_board_path_improved("zdz"))

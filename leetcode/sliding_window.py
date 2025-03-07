@@ -75,25 +75,35 @@ class DataStream:
             return False
         return True
 
+def remove_all_occurences_of_a_substring(s: str, part: str):
+    i = 0
+    l = len(part)
+    while i < len(s):
+        if s[i: i + l] == part:
+            s = s[0:i] + s[i+l:]
+            i = 0
+        else:
+            i += 1
+    return s
+
 if __name__ == "__main__":
     #print(max_consecutive_ones_iii([1,1,1,0,0,0,1,1,1,1,0], 2))
     #print(max_consecutive_ones_iii([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], 3))
-    instructions = ["DataStream", "consec", "consec", "consec", "consec"]
-    vals = [[4, 3], [4], [4], [4], [3]]
-    res = []
+    # instructions = ["DataStream", "consec", "consec", "consec", "consec"]
+    # vals = [[4, 3], [4], [4], [4], [3]]
+    # res = []
     # instructions = ["DataStream","consec","consec","consec","consec","consec"]
     # vals = [[1,2],[1],[2],[1],[1],[1]]
 
-    for i in range(len(instructions)):
-        if instructions[i] == "DataStream":
-            c = DataStream(value=vals[i][0], k=vals[i][1])
-            res.append(None)
-        elif instructions[i] == "consec":
-            target = vals[i][0]
-            flag = c.consec(target)
-            res.append(flag)
+    # for i in range(len(instructions)):
+    #     if instructions[i] == "DataStream":
+    #         c = DataStream(value=vals[i][0], k=vals[i][1])
+    #         res.append(None)
+    #     elif instructions[i] == "consec":
+    #         target = vals[i][0]
+    #         flag = c.consec(target)
+    #         res.append(flag)
 
-    print(res)
-    
-
-            
+    # print(res)
+    #remove_all_occurences_of_a_substring(s="daabcbaabcbc", part="abc")
+    remove_all_occurences_of_a_substring(s="axxxxyyyyb", part="xy")
