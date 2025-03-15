@@ -181,8 +181,53 @@ def even_odd_tree(root):
 
     return True
 
+def closest_nodes_queries_in_a_binary_search_tree(root, queries):
+    # in order traversal bfs
+    queue = collections.deque([])
+    res = []
+    current = root
+    while current or queue:
+        while current:
+            queue.append(current)
+            current = current.left
+        current = queue.pop()
+        res.append(current.val)
 
+        current = current.right
 
+    l = 0
+    r = len(res) - 1
+    d = collections.defaultdict(list)
+    final_res = []
+
+    for target in queries:
+        if target not in d:
+            while l <= r:
+                m = (l + r) // 2
+                if res[m] > target:
+                    r = m - 1
+                elif res[m] < target:
+                    l = m + 1
+                elif res[m] == target:
+                    d[target].append(target)
+                    d[target].append(target)
+                    final_res.append([target, target])
+                    break
+
+            if d[target] == []:
+                min_val = res[r] if r >= 0 else -1
+                max_val = res[l] if l < len(res) else -1
+                d[target].append(min_val)
+                d[target].append(max_val)
+                final_res.append([min_val, max_val])
+
+            l = 0
+            r = len(res) - 1
+        else:
+            final_res.append(d[target])
+
+    return final_res
+                
 if __name__ == "__main__":
     # a = NestedInteger([1,1])
     # b = NestedInteger(2)
@@ -279,20 +324,74 @@ if __name__ == "__main__":
     
     # print(even_odd_tree(root))
 
-    root = TreeNode(2)
-    a = TreeNode(12)
-    b = TreeNode(8)
-    c = TreeNode(5)
-    d = TreeNode(9)
-    e = TreeNode(18)
-    f = TreeNode(16)
+    # root = TreeNode(2)
+    # a = TreeNode(12)
+    # b = TreeNode(8)
+    # c = TreeNode(5)
+    # d = TreeNode(9)
+    # e = TreeNode(18)
+    # f = TreeNode(16)
+
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # a.right = d
+    # c.left = e
+    # c.right = f
+    
+    # print(even_odd_tree(root))
+
+    root = TreeNode(6)
+    a = TreeNode(2)
+    b = TreeNode(13)
+    c = TreeNode(1)
+    d = TreeNode(4)
+    e = TreeNode(9)
+    f = TreeNode(15)
+    g = TreeNode(14)
 
     root.left = a
     root.right = b
     a.left = c
     a.right = d
+    b.left = e
+    b.right = f
+    f.left = g
+    
+    print(closest_nodes_queries_in_a_binary_search_tree(root, queries=[2, 5, 16]))
+
+    root = TreeNode(4)
+    a = TreeNode(9)
+
+    root.right = a
+    
+
+    print(closest_nodes_queries_in_a_binary_search_tree(root, queries=[3]))
+
+    root = TreeNode(16)
+    a = TreeNode(14)
+    b = TreeNode(4)
+    c = TreeNode(15)
+    d = TreeNode(1)
+
+    root.left = a
+    a.left = b
+    a.right = c
+    b.left = d
+
+    print(closest_nodes_queries_in_a_binary_search_tree(root, queries=[10, 6, 2, 9]))
+
+    root = TreeNode(9)
+    a = TreeNode(6)
+    b = TreeNode(14)
+    c = TreeNode(13)
+    d = TreeNode(20)
+    e = TreeNode(12)
+
+    root.left = a
+    root.right = b
+    b.left = c
+    b.right = d
     c.left = e
-    c.right = f
-    
-    print(even_odd_tree(root))
-    
+
+    print(closest_nodes_queries_in_a_binary_search_tree(root, queries=[19,10,9,17,19,6,10,19,13,6]))

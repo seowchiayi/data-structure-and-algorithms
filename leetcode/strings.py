@@ -34,7 +34,7 @@ def equal_substring_improved(s: str, t: str, maxCost: int):
     for r in range(len(s)):
         current_cost += abs(ord(s[r]) - ord(t[r]))
 
-        while current_cost > maxCost and r <= l:
+        while current_cost > maxCost:
             current_cost -= abs(ord(s[l]) - ord(t[l]))
             l += 1
 
@@ -45,7 +45,7 @@ def equal_substring_improved(s: str, t: str, maxCost: int):
 
 
 if __name__ == "__main__":
-    print(equal_substring("abcd", "bcdf", maxCost=3))
+    # print(equal_substring("abcd", "bcdf", maxCost=3))
     # print(equal_substring("krrgw", "zjxss", maxCost=19))
     # print(equal_substring("pxezla", "loewbi", maxCost=25)) #-> output :4
     
@@ -65,4 +65,4 @@ if __name__ == "__main__":
     # print(ord('d') - ord('m'))
     # print(ord('q') - ord('g'))
 
-    # print(equal_substring(s="krpgjbjjznpzdfy", t="nxargkbydxmsgby", maxCost=14))
+    print(equal_substring(s="krpgjbjjznpzdfy", t="nxargkbydxmsgby", maxCost=14))

@@ -129,8 +129,34 @@ def smallest_subtree_with_all_deepest_nodes(node):
             stack.append(node.left)
     return node
     
+def dfs_postorder(root):
+    stack = [root]
 
+    while stack:
+        node = stack.pop()
+        print(node.val)
+        if node.right:
+            stack.append(node.right)
+        if node.left:
+            stack.append(node.left)
 
+def dfs_inorder(root):
+    stack = []
+    res = []
+    current = root
+    while current or stack:
+        while current:
+            stack.append(current)
+            current = current.left
+        
+        current = stack.pop()
+        res.append(current.val)
+
+        current = current.right
+    
+    return res
+        
+        
 if __name__ == "__main__":
     #       1
     #      / \
@@ -176,54 +202,75 @@ if __name__ == "__main__":
     # b.right = c
 
     # print(S.dfs_in_order_iterative_with_queue(root))
-    root = TreeNode(3)
-    a = TreeNode(5)
-    b = TreeNode(1)
-    c = TreeNode(6)
-    d = TreeNode(2)
-    e = TreeNode(0)
-    f = TreeNode(8)
-    g = TreeNode(7)
-    h = TreeNode(4)
+    # root = TreeNode(3)
+    # a = TreeNode(5)
+    # b = TreeNode(1)
+    # c = TreeNode(6)
+    # d = TreeNode(2)
+    # e = TreeNode(0)
+    # f = TreeNode(8)
+    # g = TreeNode(7)
+    # h = TreeNode(4)
+
+    # root.left = a
+    # root.right = b
+    # a.left = c
+    # a.right = d
+    # d.left = g
+    # d.right = h
+    # b.left = e
+    # b.right = f
+
+    # smallest_node = smallest_subtree_with_all_deepest_nodes(root)
+    # print(smallest_node.val)
+
+    # root = TreeNode(0)
+    # a = TreeNode(1)
+    # b = TreeNode(3)
+    # c = TreeNode(2)
+
+    # root.left = a
+    # root.right = b
+    # a.right = c
+
+    # smallest_node = smallest_subtree_with_all_deepest_nodes(root)
+    # print(smallest_node.val)
+
+    # root = TreeNode(0)
+    # a = TreeNode(1)
+    # b = TreeNode(3)
+    # c = TreeNode(2)
+    # d = TreeNode(6)
+    # e = TreeNode(5)
+    # f = TreeNode(4)
+
+    # root.left = a
+    # a.left = b
+    # a.right = c
+    # b.left = d
+    # c.left = e
+    # c.right = f
+
+    # smallest_node = smallest_subtree_with_all_deepest_nodes(root)
+    # print(smallest_node.val)
+    root = TreeNode(1)
+    a = TreeNode(2)
+    b = TreeNode(3)
+    c = TreeNode(4)
+    d = TreeNode(5)
+    e = TreeNode(6)
+    f = TreeNode(7)
+    g = TreeNode(3)
+    h = TreeNode(8)
+    i = TreeNode(9)
 
     root.left = a
     root.right = b
     a.left = c
     a.right = d
-    d.left = g
-    d.right = h
-    b.left = e
-    b.right = f
+    d.left = e
+    d.right = f
+    b.right = h
+    h.left = i
 
-    smallest_node = smallest_subtree_with_all_deepest_nodes(root)
-    print(smallest_node.val)
-
-    root = TreeNode(0)
-    a = TreeNode(1)
-    b = TreeNode(3)
-    c = TreeNode(2)
-
-    root.left = a
-    root.right = b
-    a.right = c
-
-    smallest_node = smallest_subtree_with_all_deepest_nodes(root)
-    print(smallest_node.val)
-
-    root = TreeNode(0)
-    a = TreeNode(1)
-    b = TreeNode(3)
-    c = TreeNode(2)
-    d = TreeNode(6)
-    e = TreeNode(5)
-    f = TreeNode(4)
-
-    root.left = a
-    a.left = b
-    a.right = c
-    b.left = d
-    c.left = e
-    c.right = f
-
-    smallest_node = smallest_subtree_with_all_deepest_nodes(root)
-    print(smallest_node.val)
+    dfs_inorder(root)
